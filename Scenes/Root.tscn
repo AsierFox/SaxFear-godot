@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/PlayersEventManager.gd" type="Script" id=2]
+[ext_resource path="res://Nodes/WorldTimer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/TestMap.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+
+[node name="Root" type="Node"]
+script = ExtResource( 1 )
+
+[node name="PlayersEventManager" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="WorldTimer" parent="." instance=ExtResource( 3 )]
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 90, 160 )
+
+[node name="TestMap" parent="." instance=ExtResource( 5 )]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Area2D"]
+
