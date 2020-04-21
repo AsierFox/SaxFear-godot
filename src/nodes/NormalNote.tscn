@@ -1,10 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/NormalNote.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/normal-note.png" type="Texture" id=2]
+[ext_resource path="res://src/assets/sprites/normal-note.png" type="Texture" id=1]
+[ext_resource path="res://src/scripts/NormalNote.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
-
 resource_name = "NormalNote"
 loop = true
 tracks/0/type = "value"
@@ -21,23 +20,22 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=2]
-
-extents = Vector2( 6.66088, 7.01959 )
+extents = Vector2( 6.14168, 6.48727 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
-script = ExtResource( 1 )
+collision_layer = 8
+collision_mask = 5
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.0514259, -0.0514259 )
-texture = ExtResource( 2 )
+position = Vector2( 0, -8 )
+texture = ExtResource( 1 )
 hframes = 3
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 autoplay = "NormalNote"
 anims/NormalNote = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.363825, -1.00793 )
+position = Vector2( 0.397762, -7.20448 )
 shape = SubResource( 2 )
-

@@ -2,27 +2,32 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/32x32_map_tilev1.1.png-33218bfc6377ff1fad84a0400bb33a1a.stex"
+path="res://.import/32x32_map_tilev1.1.png-bcb2f5435ac7deb5e8a7be06873a6074.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Maps/TestMap/32x32_map_tilev1.1.png"
-dest_files=[ "res://.import/32x32_map_tilev1.1.png-33218bfc6377ff1fad84a0400bb33a1a.stex" ]
+source_file="res://src/assets/tilesets/32x32_map_tilev1.1.png"
+dest_files=[ "res://.import/32x32_map_tilev1.1.png-bcb2f5435ac7deb5e8a7be06873a6074.stex" ]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
