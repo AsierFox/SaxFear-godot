@@ -8,6 +8,8 @@ var _can_shoot: bool = true
 var _shoot_cadence: float = 1
 var _shoot_cadence_counter: float = 0.0
 
+var stomp_impulse: float = 200.0
+
 # TODO Make a enum for this
 var current_animation_direction: String = "right"
 
@@ -21,6 +23,12 @@ func _shoot() -> void:
 	emit_signal('player_shoot', NormalNote,
 		current_animation_direction, $ShootOrigin.global_position)
 
+func _on_EnemyDetector_top_area_entered(area: Area2D) -> void:
+	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+
+func _on_EnemyDetector_top_body_entered(body: PhysicsBody2D) -> void:
+	print("Player died!!")
+
 # INTERNALS
 
 func _physics_process(delta: float) -> void:
@@ -32,8 +40,11 @@ func _physics_process(delta: float) -> void:
 
 	var direction: Vector2 = _get_input_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	# Translate top to normal Vector2(0, -1)
-	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
+	
+	# if direction.y For allowing player to jump
+	var snap: Vector2 = Vector2.DOWN * 80.0 if direction.y == 0.0 else Vector2.ZERO
+	# PI / 3 == 180º / 3 = 60º
+	_velocity = move_and_slide_with_snap(_velocity, snap, FLOOR_NORMAL, true, 4, PI / 3)
 
 	_update_animation(direction)
 
@@ -68,6 +79,17 @@ func calculate_move_velocity(
 	if is_jump_interrupted:
 		new_velocity.y = 0.0
 
+	return new_velocity
+
+func calculate_stomp_velocity(
+		linear_velocity: Vector2,
+		impulse: float
+	) -> Vector2:
+	
+	var new_velocity: Vector2 = linear_velocity
+	
+	new_velocity.y = -impulse
+	
 	return new_velocity
 
 func _update_animation(direction: Vector2) -> void:

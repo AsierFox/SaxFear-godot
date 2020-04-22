@@ -9,10 +9,10 @@ func _ready() -> void:
 
 # SIGNALS
 
-func _on_enemy_top_area_entered(body: PhysicsBody2D) -> void:
-	if body.global_position.y > $Area2D.global_position.y:
+func _on_enemy_top_area_entered(body: Node) -> void:
+	if body.global_position.y > $TopArea2D.global_position.y:
 		return
-	$Area2D/CollisionShape2D.disabled = true
+	$TopArea2D/CollisionShape2D.disabled = true
 	queue_free()
 
 # INTERNALS
@@ -20,7 +20,9 @@ func _on_enemy_top_area_entered(body: PhysicsBody2D) -> void:
 func _physics_process(delta: float) -> void:
 	_velocity.y += GRAVITY * delta
 
+	var snap: Vector2 = Vector2.DOWN * 80.0
+
+	_velocity.y = move_and_slide_with_snap(_velocity, snap, FLOOR_NORMAL, true, 4, PI / 3).y
+
 	if is_on_wall():
 		_velocity.x *= -1.0
-
-	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
