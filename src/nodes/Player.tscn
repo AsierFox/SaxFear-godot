@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/assets/sprites/player.png" type="Texture" id=2]
 
 [sub_resource type="AnimatedTexture" id=1]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.9297, 27.7884 )
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -0.256744, -15.066, 8.96088, -14.9439, 10.3038, 3.36922, 10.308, 10.1166, 8.74167, 11.7542, 4.75455, 12.2526, 3.82897, 14.9581, -7.5628, 14.6733, -7.70519, -0.634369, -11.1939, -3.9095, -10.9091, -8.751, -7.77639, -14.8741 )
 
 [sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 14.9297, 27.7884 )
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 15.8283, 28.7593 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
@@ -26,9 +29,13 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
+position = Vector2( 0, 0.10375 )
+occluder = SubResource( 2 )
+
 [node name="CollisionRect2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.901432, -27.8111 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="ShootOrigin" type="Position2D" parent="."]
 position = Vector2( 20, -14.7158 )
@@ -49,6 +56,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectorArea2D"]
 position = Vector2( 0.901432, -27.8111 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 [connection signal="area_entered" from="EnemyDetectorArea2D" to="." method="_on_EnemyDetector_top_area_entered"]
 [connection signal="body_entered" from="EnemyDetectorArea2D" to="." method="_on_EnemyDetector_top_body_entered"]

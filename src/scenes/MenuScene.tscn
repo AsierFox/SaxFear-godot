@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/scenes/TitleLabelScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/scenes/PlayButtonScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/scenes/QuitButtonScene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/themes/IndieFlowerTheme.tres" type="Theme" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.247059, 0.14902, 0.14902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" parent="ColorRect" instance=ExtResource( 1 )]
+margin_left = -61.0
+margin_top = 128.0
+margin_right = 61.0
+margin_bottom = 196.0
+
+[node name="Container" type="VBoxContainer" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -174.0
+margin_top = 296.0
+margin_right = 174.0
+margin_bottom = 456.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" parent="ColorRect/Container" instance=ExtResource( 2 )]
+
+[node name="QuitButton" parent="ColorRect/Container" instance=ExtResource( 3 )]

@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SaxFear"
-run/main_scene="res://src/scenes/TestScene.tscn"
+run/main_scene="res://src/scenes/MenuScene.tscn"
 config/icon="res://icon.png"
 
 [debug]
